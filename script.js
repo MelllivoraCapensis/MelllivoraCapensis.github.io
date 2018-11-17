@@ -50,6 +50,7 @@ class ItemsBoxObj {
 		})
 	}
 	setSize(screenWidth){
+	document.getElementById('size').innerHTML=screenWidth;
          this.size=Math.min(4,Math.floor(screenWidth/(this.itemWidth+
          	this.itemMarginRight)));
          this.width=this.size*(this.itemWidth+this.itemMarginRight)-
