@@ -35,28 +35,28 @@ class itemsBoxObj {
 		this.itemsBoxDom.appendChild(this.itemsWrapperDom);
 	}
 	addItems(items){
-	items.forEach((item)=>{
-		this.items.push(item);
-		let itemDom=document.createElement("div");
-		itemDom.classList.add("itemDom");
-		this.itemsWrapperDom.appendChild(itemDom);
-		let title=document.createElement('h2');
-		title.innerHTML=item.title;
-		itemDom.appendChild(title);
-		let image=document.createElement('img');
-		image.src=item.imageUrl;
-		itemDom.appendChild(image);
-		let description=document.createElement('p');
-    	description.innerHTML=item.description.slice(0,200);
-		itemDom.appendChild(description);
-		let viewCount=document.createElement('p');
-    	viewCount.innerHTML=item.viewCount;
-		itemDom.appendChild(viewCount);
-		let link=document.createElement('a');
-		link.innerHTML='Перейти';
-		link.href="https://youtube.com/watch?v="+item.id;
-		link.target="_blank";
-		itemDom.appendChild(link);
+		items.forEach((item)=>{
+			this.items.push(item);
+			let itemDom=document.createElement("div");
+			itemDom.classList.add("itemDom");
+			this.itemsWrapperDom.appendChild(itemDom);
+			let title=document.createElement('h2');
+			title.innerHTML=item.title;
+			itemDom.appendChild(title);
+			let image=document.createElement('img');
+			image.src=item.imageUrl;
+			itemDom.appendChild(image);
+			let description=document.createElement('p');
+			description.innerHTML=item.description.slice(0,200);
+			itemDom.appendChild(description);
+			let viewCount=document.createElement('p');
+			viewCount.innerHTML=item.viewCount;
+			itemDom.appendChild(viewCount);
+			let link=document.createElement('a');
+			link.innerHTML='Перейти';
+			link.href="https://youtube.com/watch?v="+item.id;
+			link.target="_blank";
+			itemDom.appendChild(link);
 		})
 	}
 	setSize(screenWidth){
@@ -70,7 +70,11 @@ class itemsBoxObj {
 	setRestOfClips(){
 		this.restOfClips=this.items.length-this.size+this.leftScroll;
 		if(this.restOfClips<this.size)
-				makeRequest(this);
+			makeRequest(this);
+	}
+	deleteMouseSwipe(){
+		let elem=this.itemsWrapperDom;
+		elem.onmousedown=null;
 	}
 	setMouseSwipe(){
 		let elem=this.itemsWrapperDom;
@@ -79,7 +83,7 @@ class itemsBoxObj {
 			return false;
 		}
 		elem.onmousedown=(e)=>{
-			console.log('mousedown');
+			//console.log('mousedown');
 			let startLeftScroll=this.leftScroll;
 			let startLeftMouse=e.pageX;
 			elem.onmousemove=(e)=>{
@@ -91,18 +95,15 @@ class itemsBoxObj {
 						this.setRestOfClips();
 						resolve();
 					})
-				    promise.then(()=>{
-				    	elem.style.left=this.leftScroll*(this.itemWidth+this.itemMarginRight)+"px";
-				    })
+					promise.then(()=>{
+						elem.style.left=this.leftScroll*(this.itemWidth+this.itemMarginRight)+"px";
+					})
 					elem.onmousemove=null;
 					elem.onmouseleave=null;
 					window.onmouseup=null;
 				}
-				elem.onmouseleave=()=>{
-					finishMove();
-					console.log('pizda');
-				}
-                window.onmouseup=finishMove;
+				elem.onmouseleave=finishMove;
+				window.onmouseup=finishMove;
 			}
 		}
 	}
@@ -131,23 +132,28 @@ function init(){
 	gapi.client.setApiKey('AIzaSyCTWC75i70moJLzyNh3tt4jzCljZcRkU8Y');
 	gapi.client.load('youtube','v3');
 }
-search.onclick=()=>{
+search.onclick=(e)=>{
 	const itemsBox=new itemsBoxObj();
 	makeRequest(itemsBox);
 }
 function makeRequest(itemsBox){
+	if(itemsBox.items.length>0)
+	{
+		itemsBox.deleteMouseSwipe();
+		document.body.onresize=null;
+	}
 	let request=gapi.client.youtube.search.list({
 		part:"snippet",
 		type:"video",
 		pageToken:itemsBox.nextPageToken,
 		q:query.value,
-		maxResults:20,
-		order:"viewCount"		
+		maxResults:8,
+		order:"viewCount"
 	})
 	let itemsArr=[];
 	let promise=new Promise((resolve,reject)=>{
 		request.execute(function(response){
-			console.log(response)
+			//console.log(response.nextPageToken)
 			itemsBox.nextPageToken=response.nextPageToken;
 			itemsArr=response.items.map((item)=>{
 				return {
@@ -177,12 +183,18 @@ function makeRequest(itemsBox){
 				item.viewCount=items[ind].statistics.viewCount;
 			})
 			if(itemsBox.items.length>0)
+			{
 				itemsBox.addItems(itemsArr);
+				itemsBox.setMouseSwipe();
+				document.body.onresize=()=>{
+					itemsBox.setSize(document.body.offsetWidth);
+					itemsBox.setRestOfClips();
+				}
+			}
 			else
 				itemsBox.createInterface(itemsArr);
 		})
 	})	
 }
-
 
 
