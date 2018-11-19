@@ -147,7 +147,7 @@ function makeRequest(itemsBox){
 		type:"video",
 		pageToken:itemsBox.nextPageToken,
 		q:query.value,
-		maxResult:50
+		maxResult:8
 	})
 	let itemsArr=[];
 	let promise=new Promise((resolve,reject)=>{
