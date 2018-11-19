@@ -152,7 +152,7 @@ function makeRequest(itemsBox){
 	let itemsArr=[];
 	let promise=new Promise((resolve,reject)=>{
 		request.execute(function(response){
-			//console.log(response.nextPageToken)
+			console.log(response.nextPageToken)
 			itemsBox.nextPageToken=response.nextPageToken;
 			itemsArr=response.items.map((item)=>{
 				return {
