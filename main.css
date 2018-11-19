@@ -2,7 +2,7 @@
  	position: relative;
 	border: 2px solid black;
 	margin: 20px auto;
-	min-height: 450px;
+	min-height: 500px;
 	overflow-x: hidden;
 	-moz-user-select:none;
 	user-select:none;
@@ -11,12 +11,12 @@
 	position: absolute;
 	left:0;
 	display: flex;
-    box-sizing: border-box;
-    transition: left 1s;
+        box-sizing: border-box;
+        transition: left 1s;
 }
 .itemDom{
 	width: 250px;
-	height: 450px;
+	height: 480px;
 	margin-right: 30px;
 	border: 2px solid blue;
 	box-sizing: border-box;
