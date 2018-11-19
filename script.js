@@ -50,7 +50,7 @@ class itemsBoxObj {
 			description.innerHTML=item.description.slice(0,200);
 			itemDom.appendChild(description);
 			let viewCount=document.createElement('p');
-			viewCount.innerHTML=this.items.length-1;
+			viewCount.innerHTML=this.nextPageToken;
 			itemDom.appendChild(viewCount);
 			let link=document.createElement('a');
 			link.innerHTML='Перейти';
