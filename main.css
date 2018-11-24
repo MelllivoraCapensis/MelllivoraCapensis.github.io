@@ -6,7 +6,7 @@
 	width: 230px;
 	height: 25px;
     background: lightgray;
-    margin-right: 30px;
+    margin-right: 20px;
     transition: transform 0.3s;
 }
 #searchButton{
