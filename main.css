@@ -1,10 +1,11 @@
 #itemsBoxDom{
  	position: relative;
 	margin: 20px auto;
-	min-height: 440px;
+	min-height: 450px;
 	overflow-x: hidden;
 	-moz-user-select:none;
 	user-select:none;
+	border:2px solid black;
 }
 #itemsWrapperDom{
 	position: absolute;
