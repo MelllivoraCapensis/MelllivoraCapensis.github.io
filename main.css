@@ -1,7 +1,7 @@
 #itemsBoxDom{
  	position: relative;
 	margin: 20px auto;
-	min-height: 450px;
+	min-height: 400px;
 	overflow-x: hidden;
 	-moz-user-select:none;
 	user-select:none;
@@ -46,8 +46,8 @@
 .itemDescription{
 	text-indent: 20px;
 	width: 90%;
-    height:60px;
-	margin:10px auto; 
+    height:50px;
+	margin:5px auto; 
 	font-size: 13px;
 	font-family: sans-serif;
 	text-align: ;
