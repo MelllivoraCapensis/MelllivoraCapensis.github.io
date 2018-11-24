@@ -1,5 +1,5 @@
 #searchBox{
-	width: 80%;
+	width: 100%;
 	max-width: 500px;
 	margin: 10px auto;
 }
@@ -7,7 +7,7 @@
 	width: 80%;
 	height: 25px;
     background: lightgray;
-    transition: transform 0.3s;
+    transition: width 0.3s;
 }
 #searchButton{
 	display: inline-block;
@@ -32,7 +32,6 @@
 	overflow-x: hidden;
 	-moz-user-select:none;
 	user-select:none;
-	border:2px solid black;
 }
 #itemsWrapperDom{
 	position: absolute;
