@@ -53,14 +53,15 @@
 	margin: 10px auto;
 	box-shadow:0 0 3px 1px red;
 	width:90%;
+	height: 120px;
 	box-sizing: border-box;
 }
 .itemTitle{
 	display: block;
-	height: 70px;
+	height: 50px;
 	width: 90%;
 	margin: 10px auto;
-	font-size:14px;
+	font-size:13px;
 	font-weight: bold;
 	font-family: 'Verdana', 'Geneva', sans-serif;
 	text-align: center;
@@ -144,20 +145,20 @@
 	cursor: pointer;
 }
 .firstPage{
-	margin-right: 30px;
+	margin-right: 25px;
 }
 .firstPage:after{
     position: absolute;
     display: 'block';
-    left: 30px;
+    left: 25px;
     content: '...';
 }
 .lastPage{
-	margin-left: 30px;
+	margin-left: 25px;
 }
 .lastPage:before{
 	position: absolute;
 	display: block;
-	left:-30px;
+	left:-25px;
 	content:'...';
 }
