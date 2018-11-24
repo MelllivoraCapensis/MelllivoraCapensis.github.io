@@ -1,7 +1,7 @@
 #itemsBoxDom{
  	position: relative;
 	margin: 20px auto;
-	min-height: 420px;
+	min-height: 350px;
 	overflow-x: hidden;
 	-moz-user-select:none;
 	user-select:none;
