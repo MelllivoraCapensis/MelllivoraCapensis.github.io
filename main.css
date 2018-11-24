@@ -1,16 +1,17 @@
 #searchBox{
-	width: 340px;
+	width: 80%;
+	max-width: 500px;
 	margin: 10px auto;
 }
 #searchField{
-	width: 230px;
+	width: 80%;
 	height: 25px;
     background: lightgray;
-    margin-right: 23px;
     transition: transform 0.3s;
 }
 #searchButton{
 	display: inline-block;
+	width: 15%;
 	height: 30px;
 	font-size: 18px;
 	background: red;
